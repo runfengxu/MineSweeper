@@ -1,0 +1,93 @@
+from pyDatalog import pyDatalog
+import random
+pyDatalog.create_terms('N,X0,X1,X2,X3,X4,X5,X6,X7')
+pyDatalog.create_terms('ok,queens,next_queen')
+
+#16*16  40 mines
+
+
+
+
+
+class Block(object):
+    def __init__(self,x,y):
+        self.status= 'unsearched'
+        self.x = x
+        self.y = y
+        self.value = -1
+
+
+class Agent():
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+        self.value=0
+        flaglist=[]
+        securelist=[]
+        testlist=[]
+
+
+    def birth(self):
+        x = random.randint(0,15)
+        y = random.randint(0,15)
+        self.x = x
+        self.y = y
+
+    def find_neibor(self):
+        for  positions in [(x-1,y+1),(x-1,y),(x-1,y-1),(x,y+1),(x,y-1),(x+1,y+1),(x+1,y),(x+1,y-1)]:
+            if positions[0]<16 and postions[0]>=0 and positions[1]<16 and positions[1]>=0:
+
+                neiborlist.append(positions)
+        return neiborlist
+
+    def violoentflag(self):
+        neiborlist = self.find_neibor
+        value = self.value
+        mine = 0
+
+        unsearchlist=[]
+        for block in neiborlist:
+            if block.status = 'flag':
+                mine = mine + 1
+            elif block.status = 'unsearched'
+                unsearchlist.append(block)
+
+        if len(unsearchlist) = value - mine:
+            for block in unsearchlist:
+                block.status = 'flag'
+                flaglist.append(block)
+
+    def violentmark(self):
+        neiborlist = self.find_neibor()
+
+
+
+
+
+
+    def violentexplore(self):
+        neiborlist = self.find_neibor()
+
+
+
+
+def set_up_board(board):
+    grid = [i for i in range(16)]
+    for i in range(16):
+        grid[i] = []
+        for j in range(16):
+            grid[i].append(0)
+
+    for point in board:
+        x, y = (point.x, point.y)
+        newblock = Block(point.x, point.y)
+
+        if point.value != (-1):
+            newblock.value = point.value
+
+        grid[x][y] = newblock
+
+
+
+if __name__ == '__main__' :
+    set_up_board(board)
